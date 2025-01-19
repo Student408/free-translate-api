@@ -2,13 +2,17 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
+	"html/template"
 
 	"github.com/bregydoc/gtranslate"
 	"github.com/rs/cors"
 )
+
+var enableLogs = flag.Bool("logs", false, "Enable detailed logging")
 
 type TranslateRequest struct {
 	Text string `json:"text"`
@@ -22,6 +26,10 @@ type TranslateResponse struct {
 }
 
 func TranslateHandler(w http.ResponseWriter, r *http.Request) {
+	if *enableLogs {
+		log.Println("Received translation request")
+	}
+
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -69,9 +77,24 @@ func sendJSONResponse(w http.ResponseWriter, data interface{}, statusCode int) {
 	}
 }
 
+func HealthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"status":"healthy"}`))
+}
+
+func GuideHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("guide.html"))
+	tmpl.Execute(w, nil)
+}
+
 func main() {
+	flag.Parse()
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/translate", TranslateHandler)
+	mux.HandleFunc("/health", HealthHandler)
+	mux.HandleFunc("/", GuideHandler)
+	// mux.HandleFunc("/guide", GuideHandler)
 
 	c := cors.Default().Handler(mux)
 

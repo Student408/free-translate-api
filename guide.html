@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Free Translate API Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f6f6f6;
+        }
+        .header {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #FF6C37;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            color: #282828;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        .endpoint {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .endpoint-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .method {
+            background: #FF6C37;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-right: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .url {
+            color: #555;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        pre {
+            background: #282828;
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+        .language-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .language-list li {
+            list-style: none;
+            background: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .setup-steps {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .setup-steps pre {
+            background: #f4f4f4;
+            color: #333;
+        }
+        a {
+            color: #FF6C37;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Mobile and Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .endpoint {
+                padding: 1rem;
+            }
+            
+            .endpoint-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .method {
+                margin-bottom: 0.5rem;
+            }
+            
+            pre {
+                padding: 1rem;
+                font-size: 0.9rem;
+                overflow-x: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            
+            .language-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 0.5rem;
+            }
+            
+            .language-list li {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .setup-steps {
+                padding: 1rem;
+            }
+            
+            .setup-steps pre {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+            
+            .language-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            pre {
+                font-size: 0.8rem;
+            }
+            
+            .url {
+                word-break: break-all;
+            }
+        }
+        
+        /* Improve touch targets for mobile */
+        @media (hover: none) {
+            .language-list li,
+            .method,
+            a {
+                padding: 0.8rem;
+                margin: 0.2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Free Translate API Documentation</h1>
+        <p>A simple and effective service for translating text between multiple languages.</p>
+    </div>
+
+    <section>
+        <h2>API Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method">POST</span>
+                <span class="url">/translate</span>
+            </div>
+            <p>Translates the provided text to the specified language.</p>
+            <h3>Request Body:</h3>
+            <pre>{
+    "text": "Hello, world!",
+    "to": "es"
+}</pre>
+            <h3>Response:</h3>
+            <pre>{
+    "translatedText": "¡Hola, mundo!",
+    "status": true,
+    "message": ""
+}</pre>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method">GET</span>
+                <span class="url">/health</span>
+            </div>
+            <p>Check the health status of the API.</p>
+            <h3>Response:</h3>
+            <pre>{
+    "status": "healthy"
+}</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Supported Languages</h2>
+        <div class="language-list">
+            <li>aa (Afar)</li>
+            <li>ab (Abkhazian)</li>
+            <li>af (Afrikaans)</li>
+            <li>ak (Akan)</li>
+            <li>am (Amharic)</li>
+            <li>an (Aragonese)</li>
+            <li>ar (Arabic)</li>
+            <li>as (Assamese)</li>
+            <li>av (Avar)</li>
+            <li>ay (Aymara)</li>
+            <li>az (Azerbaijani)</li>
+            <li>ba (Bashkir)</li>
+            <li>be (Belarusian)</li>
+            <li>bg (Bulgarian)</li>
+            <li>bh (Bihari)</li>
+            <li>bi (Bislama)</li>
+            <li>bm (Bambara)</li>
+            <li>bn (Bengali)</li>
+            <li>bo (Tibetan)</li>
+            <li>br (Breton)</li>
+            <li>bs (Bosnian)</li>
+            <li>ca (Catalan)</li>
+            <li>ce (Chechen)</li>
+            <li>ch (Chamorro)</li>
+            <li>co (Corsican)</li>
+            <li>cr (Cree)</li>
+            <li>cs (Czech)</li>
+            <li>cu (Old Church Slavonic)</li>
+            <li>cv (Chuvash)</li>
+            <li>cy (Welsh)</li>
+            <li>da (Danish)</li>
+            <li>de (German)</li>
+            <li>dv (Divehi)</li>
+            <li>dz (Dzongkha)</li>
+            <li>ee (Ewe)</li>
+            <li>el (Greek)</li>
+            <li>en (English)</li>
+            <li>eo (Esperanto)</li>
+            <li>es (Spanish)</li>
+            <li>et (Estonian)</li>
+            <li>eu (Basque)</li>
+            <li>fa (Persian)</li>
+            <li>ff (Peul)</li>
+            <li>fi (Finnish)</li>
+            <li>fj (Fijian)</li>
+            <li>fo (Faroese)</li>
+            <li>fr (French)</li>
+            <li>fy (West Frisian)</li>
+            <li>ga (Irish)</li>
+            <li>gd (Scottish Gaelic)</li>
+            <li>gl (Galician)</li>
+            <li>gn (Guarani)</li>
+            <li>gu (Gujarati)</li>
+            <li>gv (Manx)</li>
+            <li>ha (Hausa)</li>
+            <li>he (Hebrew)</li>
+            <li>hi (Hindi)</li>
+            <li>ho (Hiri Motu)</li>
+            <li>hr (Croatian)</li>
+            <li>ht (Haitian)</li>
+            <li>hu (Hungarian)</li>
+            <li>hy (Armenian)</li>
+            <li>hz (Herero)</li>
+            <li>ia (Interlingua)</li>
+            <li>id (Indonesian)</li>
+            <li>ie (Interlingue)</li>
+            <li>ig (Igbo)</li>
+            <li>ii (Sichuan Yi)</li>
+            <li>ik (Inupiat)</li>
+            <li>io (Ido)</li>
+            <li>is (Icelandic)</li>
+            <li>it (Italian)</li>
+            <li>iu (Inuktitut)</li>
+            <li>ja (Japanese)</li>
+            <li>jv (Javanese)</li>
+            <li>ka (Georgian)</li>
+            <li>kg (Kongo)</li>
+            <li>ki (Kikuyu)</li>
+            <li>kj (Kuanyama)</li>
+            <li>kk (Kazakh)</li>
+            <li>kl (Greenlandic)</li>
+            <li>km (Cambodian)</li>
+            <li>kn (Kannada)</li>
+            <li>ko (Korean)</li>
+            <li>kr (Kanuri)</li>
+            <li>ks (Kashmiri)</li>
+            <li>ku (Kurdish)</li>
+            <li>kv (Komi)</li>
+            <li>kw (Cornish)</li>
+            <li>ky (Kirghiz)</li>
+            <li>la (Latin)</li>
+            <li>lb (Luxembourgish)</li>
+            <li>lg (Ganda)</li>
+            <li>li (Limburgian)</li>
+            <li>ln (Lingala)</li>
+            <li>lo (Laotian)</li>
+            <li>lt (Lithuanian)</li>
+            <li>lv (Latvian)</li>
+            <li>mg (Malagasy)</li>
+            <li>mh (Marshallese)</li>
+            <li>mi (Maori)</li>
+            <li>mk (Macedonian)</li>
+            <li>ml (Malayalam)</li>
+            <li>mn (Mongolian)</li>
+            <li>mo (Moldovan)</li>
+            <li>mr (Marathi)</li>
+            <li>ms (Malay)</li>
+            <li>mt (Maltese)</li>
+            <li>my (Burmese)</li>
+            <li>na (Nauruan)</li>
+            <li>nd (North Ndebele)</li>
+            <li>ne (Nepali)</li>
+            <li>ng (Ndonga)</li>
+            <li>nl (Dutch)</li>
+            <li>nn (Norwegian Nynorsk)</li>
+            <li>no (Norwegian)</li>
+            <li>nr (South Ndebele)</li>
+            <li>nv (Navajo)</li>
+            <li>ny (Chichewa)</li>
+            <li>oc (Occitan)</li>
+            <li>oj (Ojibwa)</li>
+            <li>om (Oromo)</li>
+            <li>or (Oriya)</li>
+            <li>os (Ossetian)</li>
+            <li>pa (Punjabi)</li>
+            <li>pi (Pali)</li>
+            <li>pl (Polish)</li>
+            <li>ps (Pashto)</li>
+            <li>pt (Portuguese)</li>
+            <li>qu (Quechua)</li>
+            <li>rm (Raeto-Romance)</li>
+            <li>rn (Kirundi)</li>
+            <li>ro (Romanian)</li>
+            <li>ru (Russian)</li>
+            <li>rw (Rwandan)</li>
+            <li>sa (Sanskrit)</li>
+            <li>sc (Sardinian)</li>
+            <li>sd (Sindhi)</li>
+            <li>sg (Sango)</li>
+            <li>sh (Serbo-Croatian)</li>
+            <li>si (Sinhalese)</li>
+            <li>sk (Slovak)</li>
+            <li>sl (Slovenian)</li>
+            <li>sm (Samoan)</li>
+            <li>sn (Shona)</li>
+            <li>so (Somali)</li>
+            <li>sq (Albanian)</li>
+            <li>sr (Serbian)</li>
+            <li>ss (Swati)</li>
+            <li>st (Southern Sotho)</li>
+            <li>su (Sundanese)</li>
+            <li>sv (Swedish)</li>
+            <li>sw (Swahili)</li>
+            <li>ta (Tamil)</li>
+            <li>te (Telugu)</li>
+            <li>tg (Tajik)</li>
+            <li>th (Thai)</li>
+            <li>ti (Tigrinya)</li>
+            <li>tk (Turkmen)</li>
+            <li>tl (Tagalog)</li>
+            <li>tn (Tswana)</li>
+            <li>to (Tonga)</li>
+            <li>tr (Turkish)</li>
+            <li>ts (Tsonga)</li>
+            <li>tt (Tatar)</li>
+            <li>tw (Twi)</li>
+            <li>ty (Tahitian)</li>
+            <li>ug (Uyghur)</li>
+            <li>uk (Ukrainian)</li>
+            <li>ur (Urdu)</li>
+            <li>ve (Venda)</li>
+            <li>vi (Vietnamese)</li>
+            <li>vo (Volapük)</li>
+            <li>wa (Walloon)</li>
+            <li>wo (Wolof)</li>
+            <li>xh (Xhosa)</li>
+            <li>yi (Yiddish)</li>
+            <li>yo (Yoruba)</li>
+            <li>za (Zhuang)</li>
+            <li>zh (Chinese)</li>
+            <li>zu (Zulu)</li>
+        </div>
+    </section>
+
+    <section>
+        <h2>Testing the API</h2>
+        <div class="endpoint">
+            <h3>Using cURL</h3>
+            <p>Test the translation endpoint with cURL:</p>
+            <pre>curl -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello\", \"to\": \"ja\"}" http://localhost:8000/translate</pre>
+            
+            <h3>Expected Response:</h3>
+            <pre>{
+    "translatedText": "Halo",
+    "status": true,
+    "message": ""
+}</pre>
+            
+            <p>Check the health endpoint:</p>
+            <pre>curl http://localhost:8000/health</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Streamlit Interface</h2>
+        <div class="setup-steps">
+            <h3>Setup:</h3>
+            <ol>
+                <li>Ensure you have Python installed</li>
+                <li>Install the required packages:</li>
+            </ol>
+            <pre>pip install streamlit requests</pre>
+            
+            <h3>Running the Interface:</h3>
+            <pre>python app.py</pre>
+            <p>Access the interface at <a href="http://localhost:8501">http://localhost:8501</a></p>
+        </div>
+    </section>
+</body>
+</html>
