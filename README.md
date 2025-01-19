@@ -35,7 +35,7 @@ Free Translate API is a simple and effective service for translating text betwee
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/free-translate-api.git
+   git clone https://github.com/Student408/free-translate-api.git
    ```
 2. **Navigate to the project directory:**
    ```bash
@@ -293,11 +293,13 @@ The API supports the following languages:
 You can test the API endpoints using cURL:
 
 ### Translation Endpoint
+
 ```bash
 curl -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello\", \"to\": \"ja\"}" http://localhost:8000/translate
 ```
 
 Expected response:
+
 ```json
 {
     "translatedText": "Halo",
@@ -307,6 +309,7 @@ Expected response:
 ```
 
 ### Health Check
+
 ```bash
 curl http://localhost:8000/health
 ```
